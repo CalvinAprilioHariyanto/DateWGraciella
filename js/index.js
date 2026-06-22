@@ -72,11 +72,25 @@ function showToast(message) {
 function tryStartMusic() {
     if (!music || hasStartedMusic) return;
 
-    hasStartedMusic = true;
-    if (music.volume === 0) music.volume = 0.35;
-    music.play().catch(() => {
-        hasStartedMusic = false;
-    });
+    const startPlayback = () => {
+        music.volume = 0.25;
+        music.loop = true;
+        music.play().then(() => {
+            hasStartedMusic = true;
+        }).catch(() => {
+            hasStartedMusic = false;
+        });
+    };
+
+    if (music.readyState >= 2) {
+        startPlayback();
+    } else {
+        music.load();
+        music.oncanplaythrough = () => {
+            music.oncanplaythrough = null;
+            startPlayback();
+        };
+    }
 }
 
 function updateWizard() {
@@ -211,6 +225,11 @@ if (pauseBtn && muteBtn && music) {
     });
 }
 
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        tryStartMusic();
+    }, 300);
+});
 window.addEventListener("pointerdown", tryStartMusic, { once: true });
 window.addEventListener("touchstart", tryStartMusic, { once: true });
 window.addEventListener("click", tryStartMusic, { once: true });
