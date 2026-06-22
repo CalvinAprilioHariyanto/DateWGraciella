@@ -50,6 +50,7 @@ const resultPage = document.getElementById("resultPage");
 
 let toastTimer;
 let currentStep = 0;
+let hasStartedMusic = false;
 
 const stepImages = [
     ["../assets/who1.png", "../assets/who2.png"],
@@ -66,6 +67,16 @@ function showToast(message) {
     toastTimer = setTimeout(() => {
         toast.classList.remove("show");
     }, 2500);
+}
+
+function tryStartMusic() {
+    if (!music || hasStartedMusic) return;
+
+    hasStartedMusic = true;
+    if (music.volume === 0) music.volume = 0.35;
+    music.play().catch(() => {
+        hasStartedMusic = false;
+    });
 }
 
 function updateWizard() {
@@ -92,6 +103,8 @@ function updateWizard() {
 
 if (yesBtn && noBtn && card && planCard) {
     yesBtn.addEventListener("click", () => {
+        tryStartMusic();
+
         if (yesSound) {
             yesSound.currentTime = 0;
             yesSound.play().catch(() => {});
@@ -110,6 +123,8 @@ if (yesBtn && noBtn && card && planCard) {
     });
 
     noBtn.addEventListener("click", () => {
+        tryStartMusic();
+
         if (noSound) {
             noSound.currentTime = 0;
             noSound.play().catch(() => {});
@@ -121,6 +136,8 @@ if (yesBtn && noBtn && card && planCard) {
 if (optionButtons.length > 0) {
     optionButtons.forEach((button) => {
         button.addEventListener("click", () => {
+            tryStartMusic();
+
             const message = button.dataset.toast || "Nice choice!";
             const isCorrect = button.dataset.choice === "correct";
             const soundToPlay = isCorrect ? yesSound : noSound;
@@ -174,7 +191,7 @@ if (pauseBtn && muteBtn && music) {
     pauseBtn.addEventListener("click", () => {
         const icon = pauseBtn.querySelector("i");
         if (music.paused) {
-            music.play();
+            tryStartMusic();
             icon.className = "fa-solid fa-pause";
         } else {
             music.pause();
@@ -193,6 +210,10 @@ if (pauseBtn && muteBtn && music) {
         }
     });
 }
+
+window.addEventListener("pointerdown", tryStartMusic, { once: true });
+window.addEventListener("touchstart", tryStartMusic, { once: true });
+window.addEventListener("click", tryStartMusic, { once: true });
 
 updateWizard();
 startRaining();
