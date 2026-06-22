@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graciella's Date</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body>
+    <div class="controls">
+        <button id="pauseBtn" class="control-btn" aria-label="Pause music">
+            <i class="fa-solid fa-pause"></i>
+        </button>
+        <button id="muteBtn" class="control-btn" aria-label="Mute music">
+            <i class="fa-solid fa-volume-high"></i>
+        </button>
+    </div>
+
+    <div class="yn">
+        <img src="../assets/spupi.png" alt="cute cartoon" class="spupi">
+        <h1>Would you go on a date with me?</h1>
+        <div class="choice">
+            <button class="y" type="button">yes</button>
+            <button class="n" type="button">no</button>
+        </div>
+    </div>
+
+    <div class="plan-card" id="planCard">
+        <div class="wizard-progress">
+            <div class="progress-track">
+                <span id="progressFill"></span>
+            </div>
+            <span class="step-label" id="stepLabel">Step 1 of 4</span>
+        </div>
+
+        <div class="polaroid-row">
+            <div class="polaroid polaroid-left">
+                <img id="stepImageA" src="../assets/who1.png" alt="date planner option A">
+            </div>
+            <div class="polaroid polaroid-right">
+                <img id="stepImageB" src="../assets/who2.png" alt="date planner option B">
+            </div>
+        </div>
+
+        <div class="wizard-steps">
+            <section class="step-panel active" data-step="0">
+                <h3>Who would you go on a date with?</h3>
+                <div class="option-grid two">
+                    <button class="option-card correct" data-choice="correct" data-toast="Thankss for choosing me prettyy">sinsin (pro)</button>
+                    <button class="option-card" data-choice="wrong" data-toast="Itu sinsin, sama aja jadi pilih sinsin aja dia nub">Byeon Woo Seok (nub)</button>
+                </div>
+            </section>
+
+            <section class="step-panel" data-step="1">
+                <h3>Where would you wanna go for the date?</h3>
+                <div class="option-grid two">
+                    <button class="option-card correct" data-choice="wrong" data-toast="Umm itu kedepanya yaa (amin)">Around the world</button>
+                    <button class="option-card" data-choice="correct" data-toast="Good choice, cakep emangg">Ceci et Cella</button>
+                </div>
+            </section>
+
+            <section class="step-panel" data-step="2">
+                <h3>Mau naik apa kesana?</h3>
+                <div class="option-grid two">
+                    <button class="option-card correct" data-choice="correct" data-toast="YEAYYY, sinsin jemput yaa">ADV, sinsin jemput (punya uro btw)</button>
+                    <button class="option-card" data-choice="wrong" data-toast="Aduhh lagi diservice lagi, next time ya">PrivateJet (sinsin punya)</button>
+                </div>
+            </section>
+
+            <section class="step-panel" data-step="3">
+                <h3>Udah siap gaa?</h3>
+                <div class="option-grid two">
+                    <button class="option-card correct" data-choice="correct" data-toast="OKAYY, I promise u will not regret it">Yupp siap</button>
+                    <button class="option-card" data-choice="wrong" data-toast="PLEASEE I need thiss">iyadeh, kapan kapan aja (tim ngikut)</button>
+                </div>
+            </section>
+        </div>
+
+        <div class="wizard-nav">
+            <button class="nav-btn back-btn" id="backBtn">Back</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">✨</div>
+
+    <div class="overlay" id="overlay">
+        <div class="result-panel">
+            <h3>Yayyy, your date plan is ready!</h3>
+            <p id="resultText">You picked the perfect combo 💕</p>
+            <button id="resultBtn">See the result</button>
+        </div>
+    </div>
+
+    <section class="result-page" id="resultPage">
+        <div class="result-hero">
+            <div class="result-text">
+                <p class="eyebrow">Our little date plan</p>
+                <h2>From coffee to the moonlight</h2>
+            </div>
+            <div class="result-visual">
+                <img src="../assets/who1.png" alt="date visual left">
+                <img src="../assets/who2.png" alt="date visual right">
+            </div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item left">
+                <span class="timeline-dot">1</span>
+                <div class="timeline-card">
+                    <div class="timeline-photo">
+                        <img src="../assets/dine.jpg" alt="First stop photo">
+                    </div>
+                    <div class="timeline-meta">
+                        <span class="timeline-stage">First stop</span>
+                        <h4>Dine di Ceci Et Cella</h4>
+                        <p>kita makan duluu, karena aku laperr terus nanti aku banyak spot foto lucu, to capture the cute memories buat aku jadiin wallpaper</p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <span class="timeline-dot">2</span>
+                <div class="timeline-card">
+                    <div class="timeline-photo">
+                        <img src="../assets/photobooth.jpg" alt="Second stop photo">
+                    </div>
+                    <div class="timeline-meta">
+                        <span class="timeline-stage">Second Stop</span>
+                        <h4>Photobooth di Studio Verse</h4>
+                        <p>Aku mau photobooth disini ini lucu bangettt yang aku share di tiktok, terus mau aku jadiin keychain.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <span class="timeline-dot">3</span>
+                <div class="timeline-card">
+                    <div class="timeline-photo">
+                        <img src="../assets/home.jpg" alt="Third stop photo">
+                    </div>
+                    <div class="timeline-meta">
+                        <span class="timeline-stage">Last Stop</span>
+                        <h4>Then we, go back home as a couple xixixi</h4>
+                        <p>I'm still learning to love u gress, please dont leave me and help me improve to love u better</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-card">
+            <div class="chat-template">
+                <div class="chat-header">
+                    <img src="../assets/spupi.png" alt="contact avatar">
+                    <div>
+                        <p class="chat-name">Graciella</p>
+                        <span class="chat-status">Online</span>
+                    </div>
+                </div>
+                <div class="chat-bubbles">
+                    <div class="chat-bubble bubble-other">Aku siap datee</div>
+                    <div class="chat-bubble bubble-self">Okiee, aku otww</div>
+                </div>
+            </div>
+            <a class="wa-btn" href="https://wa.me/6281234567890?text=Hai%20sinsin%2C%20aku%20udah%20siap%20buat%20date%20ya%3F" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i>
+                Chat on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <audio id="bgMusic" autoplay loop>
+        <source src="../assets/song.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="yesSound" preload="auto">
+        <source src="../assets/yes.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="noSound" preload="auto">
+        <source src="../assets/no.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="../js/index.js"></script>
+</body>
+</html>
